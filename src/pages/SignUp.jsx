@@ -2,6 +2,15 @@ import { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import OAuth from "../components/OAuth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { db } from "../Firebase.js";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,6 +22,7 @@ export default function SignUp() {
   });
 
   const { name, email, password } = formData;
+  const navigate = useNavigate();
   function onChange(e) {
     setFormData((prevState) => ({
       ...prevState,
@@ -20,9 +30,36 @@ export default function SignUp() {
     }));
   }
 
+  async function onSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+      const user = userCredential.user;
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password;
+      formDataCopy.timestamp = serverTimestamp();
+
+      await setDoc(doc(db, "users", user.uid), formDataCopy);
+      //toast.success("Sign up was successful");
+      navigate("/");
+    } catch (error) {
+      toast.error("Something went wrong with the registration");
+    }
+  }
+
   return (
     <section>
-      <h1 className="text-3xl text-center mt-6 font-bold">Sign Un</h1>
+      <h1 className="text-3xl text-center mt-6 font-bold">Sign Up</h1>
       <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl">
         <div className="md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
           <img
@@ -32,7 +69,7 @@ export default function SignUp() {
           />
         </div>
         <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20">
-          <form>
+          <form onSubmit={onSubmit}>
             <input
               className="w-full mb-6 px-4 py-2text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
               type="text"
@@ -59,12 +96,12 @@ export default function SignUp() {
                 placeholder="Password"
               />
               {showPassword ? (
-                <AiFillEyeInvisible
+                <AiFillEye
                   className="absolute right-3 top-3 text-xl cursor-pointer"
                   onClick={() => setShowPassword((prevState) => !prevState)}
                 />
               ) : (
-                <AiFillEye
+                <AiFillEyeInvisible
                   className="absolute right-3 top-3 text-xl cursor-pointer"
                   onClick={() => setShowPassword((prevState) => !prevState)}
                 />
