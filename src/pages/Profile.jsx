@@ -10,7 +10,7 @@ import {
   where,
 } from "firebase/firestore";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { db } from "../Firebase";
 import { FcHome } from "react-icons/fc";
@@ -96,7 +96,9 @@ export default function Profile() {
   return (
     <>
       <section className="max-w-6xl mx-auto flex justify-center items-center flex-col">
-        <h1 className="text-3xl text-center mt-6 font-bold">My Profile</h1>
+        <h1 className="text-3xl text-center mt-6 font-bold text-blue-900">
+          My Profile
+        </h1>
         <div className="w-full md:w-[50%] mt-6 px-3">
           <form>
             {/* Name Input */}

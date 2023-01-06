@@ -214,7 +214,9 @@ export default function CreateListing() {
   }
   return (
     <main className="max-w-md px-2 mx-auto">
-      <h1 className="text-3xl text-center mt-6 font-bold">Edit Listing</h1>
+      <h1 className="text-3xl text-center mt-6 font-bold text-blue-900">
+        Edit Listing
+      </h1>
       <form onSubmit={onSubmit}>
         <p className="text-lg mt-6 font-semibold">Sell / Rent</p>
         <div className="flex">
@@ -224,9 +226,7 @@ export default function CreateListing() {
             value="sale"
             onClick={onChange}
             className={`mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
-              type === "rent"
-                ? "bg-white text-black"
-                : "bg-slate-600 text-white"
+              type === "rent" ? "bg-white text-black" : "bg-blue-400 text-white"
             }`}
           >
             sell
@@ -237,9 +237,7 @@ export default function CreateListing() {
             value="rent"
             onClick={onChange}
             className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
-              type === "sale"
-                ? "bg-white text-black"
-                : "bg-slate-600 text-white"
+              type === "sale" ? "bg-white text-black" : "bg-blue-400 text-white"
             }`}
           >
             rent
@@ -293,7 +291,7 @@ export default function CreateListing() {
             value={true}
             onClick={onChange}
             className={`mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
-              !parking ? "bg-white text-black" : "bg-slate-600 text-white"
+              !parking ? "bg-white text-black" : "bg-blue-400 text-white"
             }`}
           >
             Yes
@@ -304,7 +302,7 @@ export default function CreateListing() {
             value={false}
             onClick={onChange}
             className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
-              parking ? "bg-white text-black" : "bg-slate-600 text-white"
+              parking ? "bg-white text-black" : "bg-blue-400 text-white"
             }`}
           >
             no
@@ -318,7 +316,7 @@ export default function CreateListing() {
             value={true}
             onClick={onChange}
             className={`mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
-              !furnished ? "bg-white text-black" : "bg-slate-600 text-white"
+              !furnished ? "bg-white text-black" : "bg-blue-400 text-white"
             }`}
           >
             yes
@@ -329,7 +327,7 @@ export default function CreateListing() {
             value={false}
             onClick={onChange}
             className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
-              furnished ? "bg-white text-black" : "bg-slate-600 text-white"
+              furnished ? "bg-white text-black" : "bg-blue-400 text-white"
             }`}
           >
             no
@@ -393,7 +391,7 @@ export default function CreateListing() {
             value={true}
             onClick={onChange}
             className={`mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
-              !offer ? "bg-white text-black" : "bg-slate-600 text-white"
+              !offer ? "bg-white text-black" : "bg-blue-400 text-white"
             }`}
           >
             yes
@@ -404,7 +402,7 @@ export default function CreateListing() {
             value={false}
             onClick={onChange}
             className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
-              offer ? "bg-white text-black" : "bg-slate-600 text-white"
+              offer ? "bg-white text-black" : "bg-blue-400 text-white"
             }`}
           >
             no

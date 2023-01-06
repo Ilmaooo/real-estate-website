@@ -3,9 +3,17 @@
 @tailwind utilities;
 
 body {
-  background-color: rgb(240, 253, 244);
+  background-color: #e6e6e6;
 }
 
 .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
   background: #a8dadc !important;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
 }
